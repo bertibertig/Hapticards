@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+  <Tracking>
+    <ImageTarget name="clubs-queen" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-king" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-jack" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-10" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-09" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-08" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-07" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-06" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-05" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-04" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-03" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-02" size="0.063000 0.087556" />
+    <ImageTarget name="clubs-ace" size="0.063000 0.087556" />
+  </Tracking>
+</QCARConfig>
