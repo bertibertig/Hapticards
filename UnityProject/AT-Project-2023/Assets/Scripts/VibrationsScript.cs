@@ -1,57 +1,56 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Card;
 using UnityEngine;
 
 public class VibrationsScript : MonoBehaviour
 {
     bool vibrating;
-    [SerializeField] ColliderSetter[] colliders;
 
-    int counter = 0;
+    private Card card;
 
     // Start is called before the first frame update
     void Start()
     {
         vibrating = false;
+        card = GetComponentInParent<Card>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (vibrating)
+        if (enabled & !vibrating & card != null)
         {
-            return;
-        }
-
-        counter = 0;
-        for(int i=0;i<colliders.Length; i++)
-        {
-            if (colliders[i].getCol())
+            int colorNumber = -1;
+            switch (card.cardType)
             {
-                counter++;
+                case CardType.Clubs:
+                    colorNumber = 1;
+                    break;
+                case CardType.Diamonds:
+                    colorNumber = 2;
+                    break;
+                case CardType.Heart:
+                    colorNumber = 3;
+                    break;
+                case CardType.Spades:
+                    colorNumber = 4;
+                    break;
             }
-        }
 
-        if (counter > 0)
-        {
             vibrating = true;
-        }
-
-        switch (counter)
-        {
-            case 1:
-                StartCoroutine(Vibrate(1.0f, 1.0f));
-                break;
-            case 2:
-                StartCoroutine(Vibrate(0.5f, 0.5f));
-                break;
-            case 3:
-                StartCoroutine(Vibrate(0.01f, 0.01f));
-                break;
+            StartCoroutine(Vibrate(1, colorNumber, 2, card.cardValue));
         }
     }
 
-    private IEnumerator Vibrate(float _interval, float top)
+    private void OnEnable()
+    {
+        print("test");
+    }
+
+
+    private IEnumerator Vibrate(float _interval, float top, float waitEnd, float top2)
     {
         float interval = _interval;
         WaitForSeconds wait = new WaitForSeconds(interval);
@@ -63,14 +62,15 @@ public class VibrationsScript : MonoBehaviour
             yield return wait;
         }
 
-        // yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(1f);
+        print("Between");
 
-        /* for (t = 0; t < 1; t += interval) // Change the end condition (t < 1) if you want
-         {
-             Handheld.Vibrate();
-             yield return wait;
-         }
-         */
+        for (t = 0; t < top2; t += interval) // Change the end condition (t < 1) if you want
+        {
+            Handheld.Vibrate();
+            yield return wait;
+        }
+
         vibrating = false;
     }
 }
