@@ -4,27 +4,28 @@ using System.Collections.Generic;
 using Assets.Scripts.Card;
 using UnityEngine;
 
-public class VibrationsScript : MonoBehaviour
-{
+public class VibrationsScript : MonoBehaviour {
     bool vibrating;
 
     private Card card;
+    //private ImageTargetBehaviour mImageTargetBehavior;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         vibrating = false;
         card = GetComponentInParent<Card>();
+        //mImageTargetBehavior = GetComponent<ImageTargetBehaviour>();
+        //if(mImageTargetBehavior == null) {
+        //    Debug.LogError($"No ImageTargetBehaviour found for {gameObject.GetComponentInParent<Transform>().name}");
+        //    gameObject.SetActive(false);
+        //}
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (enabled & !vibrating & card != null)
-        {
+    void Update() {
+        if (enabled & !vibrating & card != null) {
             int colorNumber = -1;
-            switch (card.cardType)
-            {
+            switch (card.cardType) {
                 case CardType.Clubs:
                     colorNumber = 1;
                     break;
@@ -44,14 +45,12 @@ public class VibrationsScript : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         print("test");
     }
 
 
-    private IEnumerator Vibrate(float _interval, float top, float waitEnd, float top2)
-    {
+    private IEnumerator Vibrate(float _interval, float top, float waitEnd, float top2) {
         float interval = _interval;
         WaitForSeconds wait = new WaitForSeconds(interval);
         float t;
