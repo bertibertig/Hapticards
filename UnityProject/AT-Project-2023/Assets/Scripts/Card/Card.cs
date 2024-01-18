@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class Card :MonoBehaviour
 {
-    public CardType cardType;
-    public int cardValue;
-    public string cardName;
+    public CardType CardType { get; set; }
+    public int CardValue { get; set; }
+    public string CardName { get; set; }
 
     public override string ToString() {
-        return $"{cardName} o' {cardType.ToString().ToLower()}";
+        if(CardType == CardType.Joker) {
+            return "Joker";
+        }
+        return $"{CardName} o' {CardType.ToString().ToLower()}";
     }
 }

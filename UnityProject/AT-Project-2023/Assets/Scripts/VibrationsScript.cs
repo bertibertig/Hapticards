@@ -25,14 +25,14 @@ public class VibrationsScript : MonoBehaviour {
     void Update() {
         if (enabled & !vibrating & card != null) {
             int colorNumber = -1;
-            switch (card.cardType) {
+            switch (card.CardType) {
                 case CardType.Clubs:
                     colorNumber = 1;
                     break;
                 case CardType.Diamonds:
                     colorNumber = 2;
                     break;
-                case CardType.Heart:
+                case CardType.Hearts:
                     colorNumber = 3;
                     break;
                 case CardType.Spades:
@@ -41,7 +41,7 @@ public class VibrationsScript : MonoBehaviour {
             }
 
             vibrating = true;
-            StartCoroutine(Vibrate(1, colorNumber, 2, card.cardValue));
+            StartCoroutine(Vibrate(1, colorNumber, 2, card.CardValue));
         }
     }
 

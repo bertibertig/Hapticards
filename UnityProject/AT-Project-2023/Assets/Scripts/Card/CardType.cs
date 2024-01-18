@@ -8,7 +8,8 @@ namespace Assets.Scripts.Card {
     public enum CardType {
         Clubs,
         Diamonds,
-        Heart,
-        Spades
+        Hearts,
+        Spades,
+        Joker
     }
 }
