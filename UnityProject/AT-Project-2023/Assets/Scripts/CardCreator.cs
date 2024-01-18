@@ -40,6 +40,11 @@ public class CardCreator : MonoBehaviour {
             cardInfo.CardName = ParseCardName(cardInfo.CardValue);
             imgTar.transform.name = cardInfo.ToString();
             imgTar.transform.parent = rootGo.transform;
+            
+            //Create CubeForTesting
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.localScale = new Vector3(0.08f, 0.08f, 0.08f);
+            cube.transform.parent = imgTar.transform;
         }
     }
 
