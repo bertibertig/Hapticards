@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="spades-13" size="0.063000 0.086290" />
+    <ImageTarget name="spades-12" size="0.063000 0.087759" />
+    <ImageTarget name="spades-11" size="0.063000 0.088032" />
+    <ImageTarget name="spades-10" size="0.063000 0.086709" />
+    <ImageTarget name="spades-09" size="0.063000 0.087744" />
+    <ImageTarget name="spades-08" size="0.063000 0.087744" />
+    <ImageTarget name="spades-07" size="0.063000 0.087509" />
+    <ImageTarget name="spades-06" size="0.063000 0.088082" />
+    <ImageTarget name="spades-05" size="0.063000 0.088082" />
+    <ImageTarget name="spades-04" size="0.063000 0.087846" />
+    <ImageTarget name="spades-03" size="0.063000 0.087491" />
+    <ImageTarget name="spades-02" size="0.063000 0.087491" />
+    <ImageTarget name="spades-01" size="0.063000 0.087257" />
+    <ImageTarget name="joker-03" size="0.063000 0.088335" />
+    <ImageTarget name="joker-02" size="0.063000 0.088676" />
+    <ImageTarget name="joker-01" size="0.063000 0.087729" />
+    <ImageTarget name="hearts-13" size="0.063000 0.088082" />
+    <ImageTarget name="hearts-12" size="0.063000 0.087741" />
+    <ImageTarget name="hearts-11" size="0.063000 0.086804" />
+    <ImageTarget name="hearts-10" size="0.063000 0.087153" />
+    <ImageTarget name="hearts-09" size="0.063000 0.088607" />
+    <ImageTarget name="hearts-08" size="0.063000 0.088369" />
+    <ImageTarget name="hearts-07" size="0.063000 0.088846" />
+    <ImageTarget name="hearts-06" size="0.063000 0.087674" />
+    <ImageTarget name="hearts-05" size="0.063000 0.085713" />
+    <ImageTarget name="hearts-04" size="0.063000 0.087911" />
+    <ImageTarget name="hearts-03" size="0.063000 0.088183" />
+    <ImageTarget name="hearts-02" size="0.063000 0.087946" />
+    <ImageTarget name="hearts-01" size="0.063000 0.086667" />
+    <ImageTarget name="diamonds-13" size="0.063000 0.086972" />
+    <ImageTarget name="diamonds-01" size="0.063000 0.088538" />
+    <ImageTarget name="diamonds-12" size="0.063000 0.087696" />
+    <ImageTarget name="diamonds-11" size="0.063000 0.087542" />
+    <ImageTarget name="diamonds-10" size="0.063000 0.087308" />
+    <ImageTarget name="diamonds-09" size="0.063000 0.087862" />
+    <ImageTarget name="diamonds-08" size="0.063000 0.088098" />
+    <ImageTarget name="diamonds-07" size="0.063000 0.087862" />
+    <ImageTarget name="diamonds-06" size="0.063000 0.087608" />
+    <ImageTarget name="diamonds-05" size="0.063000 0.086911" />
+    <ImageTarget name="diamonds-04" size="0.063000 0.087016" />
+    <ImageTarget name="diamonds-03" size="0.063000 0.087608" />
+    <ImageTarget name="diamonds-02" size="0.063000 0.087844" />
     <ImageTarget name="clubs-queen" size="0.063000 0.087556" />
     <ImageTarget name="clubs-king" size="0.063000 0.087556" />
     <ImageTarget name="clubs-jack" size="0.063000 0.087556" />
