@@ -35,6 +35,8 @@ public class CardCreator : MonoBehaviour {
             string[] cardStringInfo = cs.Split('-');
             imgTar.OnTargetStatusChanged +=ImgTar_OnTargetStatusChanged;
             var cardInfo = imgTar.gameObject.AddComponent<Card>();
+            var observerHandler = imgTar.gameObject.AddComponent<DefaultObserverEventHandler>();
+
             cardInfo.CardType = (CardType)Enum.Parse(typeof(CardType), char.ToUpper(cardStringInfo[0][0]) + cardStringInfo[0].Substring(1));
             cardInfo.CardValue = ConvertCardValue(cardStringInfo[1]);
             cardInfo.CardName = ParseCardName(cardInfo.CardValue);
