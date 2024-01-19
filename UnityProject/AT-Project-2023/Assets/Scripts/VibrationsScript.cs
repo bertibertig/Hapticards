@@ -45,10 +45,6 @@ public class VibrationsScript : MonoBehaviour {
         }
     }
 
-    private void OnEnable() {
-        print("test");
-    }
-
 
     private IEnumerator Vibrate(float _interval, float top, float waitEnd, float top2) {
         float interval = _interval;
