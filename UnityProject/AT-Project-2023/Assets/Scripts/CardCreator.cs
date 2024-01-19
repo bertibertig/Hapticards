@@ -17,11 +17,13 @@ public class CardCreator : MonoBehaviour {
 
     private List<GameObject> cardGos = new List<GameObject>();
     private TextToSpeechController ttc;
+    private string locale;
     //Could also be done with VuforiaBehaviour.Instance.GetDatabaseTargetInfo(...)
     private List<string> cardNames = new List<string>() { "spades-13", "spades-12", "spades-11", "spades-10", "spades-09", "spades-08", "spades-07", "spades-06", "spades-05", "spades-04", "spades-03", "spades-02", "spades-01", "joker-03", "joker-02", "joker-01", "hearts-13", "hearts-12", "hearts-11", "hearts-10", "hearts-09", "hearts-08", "hearts-07", "hearts-06", "hearts-05", "hearts-04", "hearts-03", "hearts-02", "hearts-01", "diamonds-13", "diamonds-01", "diamonds-12", "diamonds-11", "diamonds-10", "diamonds-09", "diamonds-08", "diamonds-07", "diamonds-06", "diamonds-05", "diamonds-04", "diamonds-03", "diamonds-02", "clubs-queen", "clubs-king", "clubs-jack", "clubs-10", "clubs-09", "clubs-08", "clubs-07", "clubs-06", "clubs-05", "clubs-04", "clubs-03", "clubs-02", "clubs-ace" };
 
     // Start is called before the first frame update
     void Start() {
+        locale = AndroidLocale.Default == "de" ? "de" : "en_GB";
         VuforiaApplication.Instance.OnVuforiaInitialized += OnVuforiaInitialized;
         ttc = GetComponent<TextToSpeechController>();
         if(ttc == null) {
@@ -46,15 +48,52 @@ public class CardCreator : MonoBehaviour {
             var observerHandler = imgTar.gameObject.AddComponent<DefaultObserverEventHandler>();
 
             cardInfo.CardType = (CardType)Enum.Parse(typeof(CardType), char.ToUpper(cardStringInfo[0][0]) + cardStringInfo[0].Substring(1));
+            cardInfo.CardTypeAsString = GetCardTypeAsString(cardInfo.CardType);
             cardInfo.CardValue = ConvertCardValue(cardStringInfo[1]);
+            cardInfo.Sepperator = GetSeppOida();
             cardInfo.CardName = ParseCardName(cardInfo.CardValue);
             imgTar.transform.name = cardInfo.ToString();
             imgTar.transform.parent = rootGo.transform;
-            
-            //Create CubeForTesting
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.localScale = new Vector3(0.08f, 0.08f, 0.08f);
-            cube.transform.parent = imgTar.transform;
+        }
+    }
+
+    private string GetCardTypeAsString(CardType ct) {
+        if(locale == "de") {
+            switch (ct) {
+                case CardType.Clubs:
+                    return "Kreuz";
+                case CardType.Diamonds:
+                    return "Karo";
+                case CardType.Hearts:
+                    return "Herz";
+                case CardType.Spades:
+                    return "Pik";
+                default:
+                    return "Jolly";
+            }
+        }
+        else {
+            switch (ct) {
+                case CardType.Clubs:
+                    return "Clubs";
+                case CardType.Diamonds:
+                    return "Diamonds";
+                case CardType.Hearts:
+                    return "Hearts";
+                case CardType.Spades:
+                    return "Spades";
+                default:
+                    return "Joker";
+            }
+        }
+    }
+
+    private string GetSeppOida() {
+        switch (locale.ToLower()) {
+            case "de":
+                return " ";
+            default:
+                return " 'o ";
         }
     }
 
@@ -76,35 +115,69 @@ public class CardCreator : MonoBehaviour {
     }
 
     private string ParseCardName(int cardValue) {
-        switch (cardValue) {
-            case 1:
-                return "Ace";
-            case 2:
-                return "Two";
-            case 3:
-                return "Three";
-            case 4:
-                return "Four";
-            case 5:
-                return "Five";
-            case 6:
-                return "Six";
-            case 7:
-                return "Seven";
-            case 8:
-                return "Eight";
-            case 9:
-                return "Nine";
-            case 10:
-                return "Ten";
-            case 11:
-                return "Jack";
-            case 12:
-                return "Queen";
-            case 13:
-                return "King";
-            default:
-                return "Invalid number";
+        if (locale == "de") {
+            switch (cardValue) {
+                case 1:
+                    return "Ass";
+                case 2:
+                    return "Zwei";
+                case 3:
+                    return "Drei";
+                case 4:
+                    return "Vier";
+                case 5:
+                    return "Fünf";
+                case 6:
+                    return "Sech";
+                case 7:
+                    return "Sieben";
+                case 8:
+                    return "Acht";
+                case 9:
+                    return "Neun";
+                case 10:
+                    return "Zen";
+                case 11:
+                    return "Bube";
+                case 12:
+                    return "Dame";
+                case 13:
+                    return "König";
+                default:
+                    return "Unkorrekte Nummer";
+            }
+        }
+        else {
+            switch (cardValue) {
+                case 1:
+                    return "Ace";
+                case 2:
+                    return "Two";
+                case 3:
+                    return "Three";
+                case 4:
+                    return "Four";
+                case 5:
+                    return "Five";
+                case 6:
+                    return "Six";
+                case 7:
+                    return "Seven";
+                case 8:
+                    return "Eight";
+                case 9:
+                    return "Nine";
+                case 10:
+                    return "Ten";
+                case 11:
+                    return "Jack";
+                case 12:
+                    return "Queen";
+                case 13:
+                    return "King";
+                default:
+                    return "Invalid number";
+            }
         }
     }
 
@@ -119,6 +192,7 @@ public class CardCreator : MonoBehaviour {
         else {
             //TODO Stop Vibrating
             ttc.StopSpeech();
+            ttc.StartSpeech(locale);
             cardGone = true;
         }
         
