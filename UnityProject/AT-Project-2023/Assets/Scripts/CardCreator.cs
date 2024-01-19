@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using Assets.Scripts.Card;
+using FantomLib;
 using UnityEngine;
 using Vuforia;
 
@@ -15,12 +16,17 @@ public class CardCreator : MonoBehaviour {
     private bool cardGone = false;
 
     private List<GameObject> cardGos = new List<GameObject>();
+    private TextToSpeechController ttc;
     //Could also be done with VuforiaBehaviour.Instance.GetDatabaseTargetInfo(...)
     private List<string> cardNames = new List<string>() { "spades-13", "spades-12", "spades-11", "spades-10", "spades-09", "spades-08", "spades-07", "spades-06", "spades-05", "spades-04", "spades-03", "spades-02", "spades-01", "joker-03", "joker-02", "joker-01", "hearts-13", "hearts-12", "hearts-11", "hearts-10", "hearts-09", "hearts-08", "hearts-07", "hearts-06", "hearts-05", "hearts-04", "hearts-03", "hearts-02", "hearts-01", "diamonds-13", "diamonds-01", "diamonds-12", "diamonds-11", "diamonds-10", "diamonds-09", "diamonds-08", "diamonds-07", "diamonds-06", "diamonds-05", "diamonds-04", "diamonds-03", "diamonds-02", "clubs-queen", "clubs-king", "clubs-jack", "clubs-10", "clubs-09", "clubs-08", "clubs-07", "clubs-06", "clubs-05", "clubs-04", "clubs-03", "clubs-02", "clubs-ace" };
 
     // Start is called before the first frame update
     void Start() {
         VuforiaApplication.Instance.OnVuforiaInitialized += OnVuforiaInitialized;
+        ttc = GetComponent<TextToSpeechController>();
+        if(ttc == null) {
+            Debug.LogError("TextToSpeechController component was not found!");
+        }
     }
 
     private void OnVuforiaInitialized(VuforiaInitError error) {
@@ -107,10 +113,12 @@ public class CardCreator : MonoBehaviour {
         if (status.Status == Status.TRACKED) {
             //TODO Vibrate
             cardGone = false;
+            ttc.StartSpeech(cardInfo.ToString());
             StartCoroutine(Vibrate(0.5f, ConvertCardTypeToInt(cardInfo.CardType), cardInfo.CardValue));
         }
         else {
             //TODO Stop Vibrating
+            ttc.StopSpeech();
             cardGone = true;
         }
         
