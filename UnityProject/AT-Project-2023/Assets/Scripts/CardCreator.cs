@@ -17,13 +17,13 @@ public class CardCreator : MonoBehaviour {
 
     private List<GameObject> cardGos = new List<GameObject>();
     private TextToSpeechController ttc;
-    private string locale;
+    private SystemLanguage locale;
     //Could also be done with VuforiaBehaviour.Instance.GetDatabaseTargetInfo(...)
     private List<string> cardNames = new List<string>() { "spades-13", "spades-12", "spades-11", "spades-10", "spades-09", "spades-08", "spades-07", "spades-06", "spades-05", "spades-04", "spades-03", "spades-02", "spades-01", "joker-03", "joker-02", "joker-01", "hearts-13", "hearts-12", "hearts-11", "hearts-10", "hearts-09", "hearts-08", "hearts-07", "hearts-06", "hearts-05", "hearts-04", "hearts-03", "hearts-02", "hearts-01", "diamonds-13", "diamonds-01", "diamonds-12", "diamonds-11", "diamonds-10", "diamonds-09", "diamonds-08", "diamonds-07", "diamonds-06", "diamonds-05", "diamonds-04", "diamonds-03", "diamonds-02", "clubs-queen", "clubs-king", "clubs-jack", "clubs-10", "clubs-09", "clubs-08", "clubs-07", "clubs-06", "clubs-05", "clubs-04", "clubs-03", "clubs-02", "clubs-ace" };
 
     // Start is called before the first frame update
     void Start() {
-        locale = AndroidLocale.Default == "de" ? "de" : "en_GB";
+        locale = Application.systemLanguage == SystemLanguage.German ? SystemLanguage.German : SystemLanguage.English;
         VuforiaApplication.Instance.OnVuforiaInitialized += OnVuforiaInitialized;
         ttc = GetComponent<TextToSpeechController>();
         if(ttc == null) {
@@ -58,7 +58,7 @@ public class CardCreator : MonoBehaviour {
     }
 
     private string GetCardTypeAsString(CardType ct) {
-        if(locale == "de") {
+        if(locale == SystemLanguage.German) {
             switch (ct) {
                 case CardType.Clubs:
                     return "Kreuz";
@@ -89,8 +89,8 @@ public class CardCreator : MonoBehaviour {
     }
 
     private string GetSeppOida() {
-        switch (locale.ToLower()) {
-            case "de":
+        switch (locale) {
+            case SystemLanguage.German:
                 return " ";
             default:
                 return " 'o ";
@@ -115,7 +115,7 @@ public class CardCreator : MonoBehaviour {
     }
 
     private string ParseCardName(int cardValue) {
-        if (locale == "de") {
+        if (locale == SystemLanguage.German) {
             switch (cardValue) {
                 case 1:
                     return "Ass";
@@ -192,7 +192,6 @@ public class CardCreator : MonoBehaviour {
         else {
             //TODO Stop Vibrating
             ttc.StopSpeech();
-            ttc.StartSpeech(locale);
             cardGone = true;
         }
         
