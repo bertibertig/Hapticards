@@ -29,7 +29,7 @@ Text to speak uses the integrated Google TTS features found in the package com.g
 It uses the locale settings of the Unity Player which in return uses the ones of Android. Currently English and German are supported.
 
 ## Libraries and Frameworks used
-Vuforia - [https://developer.vuforia.com](https://developer.vuforia.com)
-Unity 2022.3.17f1 - [https://unity.com/products/unity-engine](https://unity.com/products/unity-engine)
-Android Native Dialogs and Functions Plugin (TTS) - [https://assetstore.unity.com/packages/tools/gui/android-native-dialogs-and-functions-plugin-106497](https://assetstore.unity.com/packages/tools/gui/android-native-dialogs-and-functions-plugin-106497
+ - Vuforia - [https://developer.vuforia.com](https://developer.vuforia.com)
+ - Unity 2022.3.17f1 - [https://unity.com/products/unity-engine](https://unity.com/products/unity-engine)
+ - Android Native Dialogs and Functions Plugin (TTS) - [https://assetstore.unity.com/packages/tools/gui/android-native-dialogs-and-functions-plugin-106497](https://assetstore.unity.com/packages/tools/gui/android-native-dialogs-and-functions-plugin-106497
 )
