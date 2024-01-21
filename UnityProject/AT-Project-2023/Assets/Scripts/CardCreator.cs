@@ -183,11 +183,16 @@ public class CardCreator : MonoBehaviour {
 
     private void ImgTar_OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus status) {
         Card cardInfo = behaviour.transform.gameObject.GetComponent<Card>();
+        print($"{cardInfo.ToString()}: {status.Status}");
         if (status.Status == Status.TRACKED) {
-            //TODO Vibrate
             cardGone = false;
             ttc.StartSpeech(cardInfo.ToString());
-            StartCoroutine(Vibrate(0.5f, ConvertCardTypeToInt(cardInfo.CardType), cardInfo.CardValue));
+            if(cardInfo.CardType == CardType.Joker) {
+                StartCoroutine(Vibrate(0.5f, ConvertCardTypeToInt(cardInfo.CardType), 0));
+            }
+            else {
+                StartCoroutine(Vibrate(0.5f, ConvertCardTypeToInt(cardInfo.CardType), cardInfo.CardValue));
+            }
         }
         else {
             //TODO Stop Vibrating
@@ -229,7 +234,7 @@ public class CardCreator : MonoBehaviour {
             yield return wait;
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         for (t = 0; t < top2 & !cardGone; t += interval) // Change the end condition (t < 1) if you want
         {
@@ -240,6 +245,7 @@ public class CardCreator : MonoBehaviour {
         //Vibrate 4 times very fast in case that card is gone
         if (cardGone) 
         {
+            yield return new WaitForSeconds(1.0f);
             for (t = 0; t < 1; t += 0.25f) // Change the end condition (t < 1) if you want
             {
                 Handheld.Vibrate();
