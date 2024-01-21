@@ -5,10 +5,10 @@ We created an AR phone app that helps people with vision empairments or hearing 
 The needed cards can be downloaded in the repocitory, however exisiting poker cards can also be used.
 
 ## Members
-Tobias Hinum k11905157\
-Benjamin Luchici k11917268\
-Corina Pötscher k11904026\
-Sascha Bertleff k11908754\
+ - Tobias Hinum k11905157
+ - Benjamin Luchici k11917268
+ - Corina Pötscher k11904026
+ - Sascha Bertleff k11908754
 
 ## How it works
 Every time a card from the deck that can be downloaded in VuforiaData\Images\Cards is recognized the phone tells the user it's value with Text-To-Speech and vibrates its value. If the card gets removed while the vibration or TTS is still active the TTS stops, and the vibration waits for 1 second and then vibrates four times to signal the user the card was removed.
